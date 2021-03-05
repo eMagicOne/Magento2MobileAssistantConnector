@@ -1,0 +1,34 @@
+{
+    "name": "emagicone/module-mobassistantconnector",
+    "description": "Feel stressed leaving your Magento store off-hand during your vacation, meetings or conferences? Are you carrying laptop everywhere you go, repeatedly searching the answer for bothering question in your mind - What is going on at my store? With Magento Mobile Assistant on you can be on the move and have access to the real-time store data reports at your fingertips. Using it you can monitor key details on your products, customers and orders from your Android device wherever you are.",
+    "type": "magento2-module",
+    "version": "1.0.8",
+    "authors": [
+        {
+            "name": "eMagicOne",
+            "email": "support@emagicone.com",
+            "homepage": "https://emagicone.com"
+        }
+    ],
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Emagicone\\Mobassistantconnector\\": ""
+        }
+    },
+    "require": {
+        "php": "^5.5.22 || ^7.0"
+    },
+    "keywords": [
+        "magento2",
+        "magento 2",
+        "emagicone",
+        "mobile assistant connector"
+    ]
+}

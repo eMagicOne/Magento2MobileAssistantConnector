@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Emagicone_Mobassistantconnector::css/style.css"/>
+        <link src="Emagicone_Mobassistantconnector::js/qrcode.min.js"/>
+        <link src="Emagicone_Mobassistantconnector::js/user_edit.js"/>
+        <link src="Emagicone_Mobassistantconnector::js/qrcode_app.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Emagicone\Mobassistantconnector\Block\Adminhtml\User\Edit" name="mobassistantconnector_user_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Emagicone\Mobassistantconnector\Block\Adminhtml\User\Edit\Tabs" name="mobassistantconnector_user_edit_tabs">
+                <block class="Emagicone\Mobassistantconnector\Block\Adminhtml\User\Edit\Tab\Main" name="mobassistantconnector_user_edit_tab_main"/>
+                <block class="Emagicone\Mobassistantconnector\Block\Adminhtml\User\Edit\Tab\Permissions" name="mobassistantconnector_user_edit_tab_permissions"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">mobassistantconnector_user_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">permissions_section</argument>
+                    <argument name="block" xsi:type="string">mobassistantconnector_user_edit_tab_permissions</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Emagicone_Mobassistantconnector::settings" title="Mobile Assistant Connector" module="Emagicone_Mobassistantconnector" sortOrder="100" dependsOnModule="Emagicone_Mobassistantconnector" resource="Emagicone_Mobassistantconnector::settings"/>
+        <add id="Emagicone_Mobassistantconnector::user" title="Users" module="Emagicone_Mobassistantconnector" parent="Emagicone_Mobassistantconnector::settings" action="mobassistantconnector/user" resource="Emagicone_Mobassistantconnector::user"/>
+    </menu>
+</config>

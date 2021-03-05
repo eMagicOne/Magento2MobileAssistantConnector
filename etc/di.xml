@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Emagicone\Mobassistantconnector\Api\Data\UserSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Emagicone\Mobassistantconnector\Api\Data\UserInterface" type="Emagicone\Mobassistantconnector\Model\User" />
+    <preference for="Emagicone\Mobassistantconnector\Api\UserRepositoryInterface" type="Emagicone\Mobassistantconnector\Model\UserRepository" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mobassistantconnector_user_listing_data_source" xsi:type="string">Emagicone\Mobassistantconnector\Model\ResourceModel\User\Grid\Collection</item>
+                <item name="mobassistantconnector_user_edit_device_grid_data_source" xsi:type="string">Emagicone\Mobassistantconnector\Model\ResourceModel\User\Device\Users\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Emagicone\Mobassistantconnector\Model\ResourceModel\User\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mobassistantconnector_users</argument>
+            <argument name="eventPrefix" xsi:type="string">mobassistantconnector_user_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">user_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Emagicone\Mobassistantconnector\Model\ResourceModel\User</argument>
+        </arguments>
+    </type>
+    <virtualType name="MobassistantconnectorGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="UserGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Emagicone\Mobassistantconnector\Model\ResourceModel\User\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">MobassistantconnectorGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Emagicone\Mobassistantconnector\Model\ResourceModel\User\Device\Users\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mobassistantconnector_push_notifications</argument>
+            <argument name="resourceModel" xsi:type="string">Emagicone\Mobassistantconnector\Model\ResourceModel\PushNotification</argument>
+        </arguments>
+    </virtualType>
+</config>
