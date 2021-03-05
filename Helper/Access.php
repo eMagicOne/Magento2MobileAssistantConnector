@@ -19,6 +19,7 @@
 namespace Emagicone\Mobassistantconnector\Helper;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Encryption\Encryptor;
 
 /**
  * Class Access
@@ -122,7 +123,7 @@ class Access
         }
 
         $encryptor = Tools::getObjectManager()->create('Magento\Framework\Encryption\EncryptorInterface');
-        $key = hash(Constants::HASH_ALGORITHM, $encryptor->getHash($timestamp, true));
+        $key = hash(Constants::HASH_ALGORITHM, $encryptor->getHash((string)$timestamp, true));
 
         Tools::getObjectManager()->create('Emagicone\Mobassistantconnector\Model\SessionKey')
             ->loadByUserId($user_id)
