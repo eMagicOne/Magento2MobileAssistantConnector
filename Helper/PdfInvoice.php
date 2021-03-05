@@ -40,9 +40,8 @@ class PdfInvoice extends \Magento\Sales\Model\Order\Pdf\Invoice
      * @param \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
      * @param \Magento\Sales\Model\Order\Address\Renderer $addressRenderer
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
      * @param array $data
-     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -57,10 +56,15 @@ class PdfInvoice extends \Magento\Sales\Model\Order\Pdf\Invoice
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Sales\Model\Order\Address\Renderer $addressRenderer,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Locale\ResolverInterface $localeResolver,
+        \Magento\Framework\ObjectManagerInterface $objectManager,
         array $data = []
     ) {
         $this->_paymentData = $paymentData;
+        if (property_exists('\Magento\Sales\Model\Order\Pdf\Invoice', 'appEmulation')) {
+            $objectName = 'Magento\Store\Model\App\Emulation';
+        } else {
+            $objectName = '\Magento\Framework\Locale\ResolverInterface';
+        }
         parent::__construct(
             $paymentData,
             $string,
@@ -73,7 +77,7 @@ class PdfInvoice extends \Magento\Sales\Model\Order\Pdf\Invoice
             $inlineTranslation,
             $addressRenderer,
             $storeManager,
-            $localeResolver,
+            $objectManager->create($objectName),
             $data
         );
     }
